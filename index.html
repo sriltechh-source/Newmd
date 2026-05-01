@@ -5,7 +5,7 @@
   <style>
   .chat-float {
     position: fixed;
-    bottom: 120px;
+    bottom: 160px;
     right: 20px;
     width: 55px;
     height: 55px;
@@ -5559,6 +5559,17 @@ function openChat() {
   }
 }
 </script>
+        <script>
+function hideTawk() {
+  if (typeof Tawk_API !== "undefined") {
+    Tawk_API.hideWidget(); // force hide
+  } else {
+    setTimeout(hideTawk, 500);
+  }
+}
+
+hideTawk();
+        </script>
             </body>
     </body>
 </html>
