@@ -2,6 +2,16 @@
 
 <html lang="en">
     <head>
+        <style>
+/* Target Tawk container more aggressively */
+div[id^="tawkchat-container"],
+iframe[src*="tawk.to"] {
+  position: fixed !important;
+  bottom: 120px !important;
+  right: 20px !important;
+  z-index: 999999 !important;
+}
+        </style>
         <meta charset="UTF-8" />
 
         <meta
@@ -5534,14 +5544,21 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
-        <style>
-iframe[src*="tawk.to"] {
-  position: fixed !important;
-  bottom: 120px !important;
-  right: 20px !important;
-  z-index: 9999 !important;
+        <script>
+function moveTawk() {
+  var iframe = document.querySelector('iframe[src*="tawk.to"]');
+  if (iframe) {
+    iframe.style.position = "fixed";
+    iframe.style.bottom = "120px";
+    iframe.style.right = "20px";
+    iframe.style.zIndex = "999999";
+  } else {
+    setTimeout(moveTawk, 500); // retry until loaded
+  }
 }
-</style>
-    </body>
+
+moveTawk();
+        </script>
+            </body>
     </body>
 </html>
