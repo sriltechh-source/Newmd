@@ -2,16 +2,22 @@
 
 <html lang="en">
     <head>
-        <style>
-/* Target Tawk container more aggressively */
-div[id^="tawkchat-container"],
-iframe[src*="tawk.to"] {
-  position: fixed !important;
-  bottom: 120px !important;
-  right: 20px !important;
-  z-index: 999999 !important;
-}
-        </style>
+  <style>
+  .chat-float {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: white;
+    font-size: 24px;
+    border: none;
+    z-index: 9999;
+    cursor: pointer;
+  }
+  </style>
         <meta charset="UTF-8" />
 
         <meta
@@ -3720,6 +3726,7 @@ iframe[src*="tawk.to"] {
 
         <!-- ========== FLOATING ========== -->
 
+        <button class="chat-float" onclick="openChat()">💬</button>
         <div class="float-wa" onclick="openWA('Hi, I need help')">
             <svg viewBox="0 0 24 24">
                 <path
@@ -5543,22 +5550,15 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
-<!--End of Tawk.to Script-->
-        <script>
-function moveTawk() {
-  var iframe = document.querySelector('iframe[src*="tawk.to"]');
-  if (iframe) {
-    iframe.style.position = "fixed";
-    iframe.style.bottom = "120px";
-    iframe.style.right = "20px";
-    iframe.style.zIndex = "999999";
+<script>
+function openChat() {
+  if (typeof Tawk_API !== "undefined") {
+    Tawk_API.maximize();
   } else {
-    setTimeout(moveTawk, 500); // retry until loaded
+    alert("Chat is loading...");
   }
 }
-
-moveTawk();
-        </script>
+</script>
             </body>
     </body>
 </html>
