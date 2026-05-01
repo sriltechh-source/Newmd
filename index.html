@@ -5,7 +5,7 @@
   <style>
   .chat-float {
     position: fixed;
-    bottom: 160px;
+    bottom: 200px;
     right: 20px;
     width: 55px;
     height: 55px;
@@ -5560,15 +5560,18 @@ function openChat() {
 }
 </script>
         <script>
-function hideTawk() {
-  if (typeof Tawk_API !== "undefined") {
-    Tawk_API.hideWidget(); // force hide
-  } else {
-    setTimeout(hideTawk, 500);
-  }
-}
+var Tawk_API = Tawk_API || {};
 
-hideTawk();
+Tawk_API.onLoad = function () {
+  Tawk_API.hideWidget();
+
+  // Keep hiding in case it reappears
+  setInterval(function () {
+    if (Tawk_API.hideWidget) {
+      Tawk_API.hideWidget();
+    }
+  }, 800);
+};
         </script>
             </body>
     </body>
